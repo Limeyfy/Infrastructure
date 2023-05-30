@@ -13,14 +13,8 @@ public class ProjectService : IProjectService
         _dataContext = dataContext;
     }
 
-    public async Task<Project> CreateProjectAsync(CreateProjectDto dto)
+    public async Task<Project> CreateProjectAsync(Project project)
     {
-        var project = new Project
-        {
-            Name = dto.Name,
-            CompanyId = dto.CompanyId
-        };
-        
         await _dataContext.Projects.AddAsync(project);
         
         var created = await _dataContext.SaveChangesAsync();

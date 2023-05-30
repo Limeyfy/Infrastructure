@@ -5,5 +5,5 @@ namespace Infrastructure.Services.Projects;
 
 public interface IProjectService
 {
-    Task<Project> CreateProjectAsync(CreateProjectDto dto); 
+    Task<Project> CreateProjectAsync(Project project); 
 }
