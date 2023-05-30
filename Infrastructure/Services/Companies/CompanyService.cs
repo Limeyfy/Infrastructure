@@ -20,7 +20,7 @@ public class CompanyService : ICompanyService
 
     public async Task<IEnumerable<Company>> GetCompaniesAsync(int page, int pageSize)
     {
-        return await _dataContext.Companies.Skip(page * pageSize).Take(pageSize).ToListAsync();
+        return await _dataContext.Companies.Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
     }
 
     public async Task<int> GetCompaniesCountAsync()

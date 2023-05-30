@@ -54,6 +54,7 @@ public class AuthController : ControllerBase
             new Claim(ClaimTypes.NameIdentifier, user.Id),
             new Claim(ClaimTypes.Name, user.UserName),
             new Claim(ClaimTypes.Email, user.Email),
+            new Claim("UserId", user.Id)
         };
         
         foreach (var role in roles)

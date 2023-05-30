@@ -2,6 +2,7 @@ using System.Text;
 using Infrastructure;
 using Infrastructure.Data;
 using Infrastructure.Models.Auth;
+using Infrastructure.Services.Companies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -23,7 +24,7 @@ builder.Services.AddSwaggerGen(c =>
         Description = "JWT Authorization header using the Bearer scheme.",
         Name = "Authorization",
         In = ParameterLocation.Header,
-        Type = SecuritySchemeType.ApiKey,
+        Type = SecuritySchemeType.ApiKey
     });
 
     c.AddSecurityRequirement(new OpenApiSecurityRequirement
@@ -79,6 +80,8 @@ builder.Services.AddAuthorization(o =>
         .RequireAuthenticatedUser()
         .Build();
 });
+
+builder.Services.AddScoped<ICompanyService, CompanyService>();
 
 builder.Services.AddHostedService<Seeder>();
 

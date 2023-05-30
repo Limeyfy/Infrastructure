@@ -11,6 +11,8 @@ public class Company
     
     [Required]
     public string Name { get; set; } = null!;
+    
+    public Guid CreatedBy { get; set; }
 
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     
