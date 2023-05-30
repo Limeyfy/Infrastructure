@@ -3,6 +3,7 @@ using Infrastructure;
 using Infrastructure.Data;
 using Infrastructure.Models.Auth;
 using Infrastructure.Services.Companies;
+using Infrastructure.Services.Projects;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -82,6 +83,7 @@ builder.Services.AddAuthorization(o =>
 });
 
 builder.Services.AddScoped<ICompanyService, CompanyService>();
+builder.Services.AddScoped<IProjectService, ProjectService>();
 
 builder.Services.AddHostedService<Seeder>();
 

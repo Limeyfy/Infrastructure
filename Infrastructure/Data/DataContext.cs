@@ -1,5 +1,6 @@
 using Infrastructure.Models.Auth;
 using Infrastructure.Models.Companies;
+using Infrastructure.Models.Projects;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -18,7 +19,23 @@ public class DataContext : IdentityDbContext<ApplicationUser, ApplicationRole, s
         builder.Entity<ApplicationUser>()
             .HasIndex(u => u.Email)
             .IsUnique();
+        
+        builder.Entity<Project>()
+            .HasOne(p => p.Company)
+            .WithMany(c => c.Projects)
+            .HasForeignKey(p => p.CompanyId)
+            .OnDelete(DeleteBehavior.Cascade);
+        
+        builder.Entity<SubProject>()
+            .HasOne(s => s.Project)
+            .WithMany(p => p.SubProjects)
+            .HasForeignKey(s => s.ProjectId)
+            .OnDelete(DeleteBehavior.Cascade);
     }
     
     public DbSet<Company> Companies => Set<Company>();
+    
+    public DbSet<Project> Projects => Set<Project>();
+    
+    public DbSet<SubProject> SubProjects => Set<SubProject>();
 }

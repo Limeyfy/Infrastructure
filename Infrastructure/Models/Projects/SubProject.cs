@@ -1,10 +1,9 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Infrastructure.Models.Projects;
 
-namespace Infrastructure.Models.Companies;
+namespace Infrastructure.Models.Projects;
 
-public class Company
+public class SubProject
 {
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     [Key]
@@ -14,10 +13,12 @@ public class Company
     public string Name { get; set; } = null!;
     
     public Guid CreatedBy { get; set; }
-
+    
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     
     public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
     
-    public ICollection<Project> Projects { get; set; } = new List<Project>();
+    public Guid ProjectId { get; set; }
+    
+    public Project Project { get; set; } = null!;
 }
